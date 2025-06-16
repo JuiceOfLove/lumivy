@@ -8,7 +8,7 @@ export default class Store {
   user: IUser | null = null;
   isAuth: boolean = false;
   isLoading: boolean = false;
-  authChecked: boolean = false; // новый флаг
+  authChecked: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
