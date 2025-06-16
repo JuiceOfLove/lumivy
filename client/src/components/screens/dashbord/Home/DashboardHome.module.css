@@ -1,0 +1,176 @@
+.container {
+  max-width: 800px;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  background: #fbf5ff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(74, 0, 128, 0.15);
+  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+  color: #2c1a36;
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #6a1b9a;
+  margin-bottom: 1rem;
+}
+
+
+.dateNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #d1c4e9;
+  padding-bottom: 0.5rem;
+}
+
+.navBtn {
+  background: #8e24aa;
+  color: #fff;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.navBtn:hover {
+  background: #6a1b9a;
+  transform: translateY(-1px);
+}
+
+.navBtn:active {
+  transform: scale(0.95);
+}
+
+.dateLabel {
+  font-size: 1.2rem;
+  color: #5e35b1;
+  font-weight: 600;
+}
+
+
+.section {
+  margin-top: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  color: #5e35b1;
+  border-bottom: 2px solid #d1c4e9;
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+
+.eventList,
+.upcomingList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eventItem,
+.upcomingItem {
+  position: relative;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(74, 0, 128, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.eventHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.eventTime {
+  font-size: 0.9rem;
+  color: #5e35b1;
+}
+
+.eventTitle {
+  font-size: 1rem;
+  color: #2c1a36;
+}
+
+
+.colorDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #fff;
+}
+
+
+.completeBtn {
+  margin-top: 0.5rem;
+  background: #8e24aa;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  align-self: flex-start;
+}
+
+.completeBtn:hover {
+  background: #6a1b9a;
+  transform: translateY(-1px);
+}
+
+.completeBtn:active {
+  transform: scale(0.95);
+}
+
+
+.completedLabel {
+  margin-top: 0.5rem;
+  color: #388e3c;
+  font-weight: 600;
+}
+
+
+.noEvents {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .pageTitle {
+    font-size: 1.6rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .navBtn {
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+  }
+}

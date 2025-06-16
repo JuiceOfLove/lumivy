@@ -1,0 +1,67 @@
+:root {
+  --lav-bg: #fbf5ff;
+  --lav-light: #e1bee7;
+  --lav: #ba68c8;
+  --lav-dark: #8e24aa;
+  --text-main: #2c1a36;
+}
+
+.container {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  font-family: "Inter", sans-serif;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.2rem 1.8rem;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(74, 0, 128, 0.18);
+  text-align: center;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--lav) 0%, var(--lav-dark) 70%);
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--lav-dark);
+  animation: fadeIn 0.6s ease-in-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.6rem 1.2rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+  }
+}

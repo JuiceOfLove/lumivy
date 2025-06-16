@@ -1,0 +1,157 @@
+.box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem;
+  background: #fbf5ff;
+  border-top: 1px solid #e1bee7;
+}
+
+.box input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #2c1a36;
+  font-size: 0.95rem;
+}
+
+.clip {
+  cursor: pointer;
+  color: #8e24aa;
+  font-size: 1.2rem;
+}
+
+
+button[type="submit"] {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: #8e24aa;
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+
+.replyBar {
+  position: absolute;
+  top: -2.2rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background: #eedeff;
+  border-left: 3px solid #8e24aa;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  color: #2c1a36;
+}
+
+.replyBar button {
+  all: unset;
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #8e24aa;
+}
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(142, 36, 170, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.modal {
+  position: relative;
+  width: 320px;
+  max-width: 90%;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(74, 0, 128, 0.15);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.close {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #2c1a36;
+  cursor: pointer;
+}
+
+.title {
+  margin: 0 auto 0.4rem;
+  font-size: 1rem;
+  color: #2c1a36;
+  font-weight: 600;
+}
+
+.preview {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #000;
+}
+
+.caption {
+  padding: 0.55rem 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #f3e5f5;
+  color: #2c1a36;
+  font-size: 0.9rem;
+}
+
+.sendBtn {
+  align-self: flex-end;
+  padding: 0.4rem 1.2rem;
+  background: #8e24aa;
+  border: none;
+  border-radius: 0.7rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.sendBtn:hover {
+  background: #6a1b9a;
+}
+
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+
+@media (max-width: 600px) {
+  .box input[type="text"] {
+    font-size: 0.9rem;
+  }
+
+  .sendBtn {
+    padding: 0.3rem 1rem;
+    font-size: 0.9rem;
+  }
+}

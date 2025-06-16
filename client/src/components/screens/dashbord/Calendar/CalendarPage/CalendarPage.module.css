@@ -1,0 +1,443 @@
+.calendarContainer {
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: #fbf5ff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(74, 0, 128, 0.15);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c1a36;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navButton {
+  background: #8e24aa;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.navButton:hover {
+  background: #6a1b9a;
+}
+
+.selectMonth,
+.selectYear {
+  padding: 0.4rem;
+  border: 1px solid #d1c4e9;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #2c1a36;
+}
+
+.selectMonth option,
+.selectYear option {
+  background: #fff;
+  color: #2c1a36;
+}
+
+.createIntervalBtn {
+  background: #ba68c8;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.createIntervalBtn:hover {
+  background: #ab47bc;
+}
+
+.error {
+  color: #d32f2f;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  background: #e1bee7;
+  border-radius: 4px;
+}
+
+.weekdayCell {
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #5e35b1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  border: 1px solid #e1bee7;
+}
+
+.emptyCell,
+.dayCell {
+  min-height: 80px;
+  background: #fff;
+  border: 1px solid #e1bee7;
+  position: relative;
+}
+
+.dayCell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dayCell:hover {
+  background: #f3e5f5;
+}
+
+.today {
+  border: 2px solid #8e24aa;
+}
+
+.dayNumber {
+  font: 600 0.9rem/1 "Segoe UI";
+  color: #2c1a36;
+}
+
+.intervalDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: 1px solid #fff;
+}
+
+.normalDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ba68c8;
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1rem;
+  color: #5e35b1;
+}
+
+
+.modalBackdrop,
+.dayPopupBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+
+.modal,
+.dayPopupWindow {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 360px;
+  max-width: 92%;
+  max-height: 88vh;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.6rem 1.4rem 1.4rem;
+  box-shadow: 0 12px 28px rgba(74, 0, 128, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: popIn 0.32s cubic-bezier(0.22, 1.1, 0.36, 1) both;
+}
+
+
+.modal::-webkit-scrollbar,
+.dayPopupWindow::-webkit-scrollbar {
+  display: none;
+}
+
+.modal,
+.dayPopupWindow {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+.modal::before,
+.dayPopupWindow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ba68c8 0%, #8e24aa 70%);
+}
+
+
+.modalTitle,
+.popupTitle {
+  margin: 0 0 0.8rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #5e35b1;
+}
+
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.15s;
+}
+
+.closeBtn:hover {
+  color: #2c1a36;
+}
+
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modalInput,
+.modalTextarea {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #d1c4e9;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #2c1a36;
+  background: #fff;
+}
+
+.modalTextarea {
+  height: 70px;
+  resize: vertical;
+}
+
+
+.modalColorInput {
+  width: 100%;
+  height: 1.3rem;
+  padding: 0;
+  border: 1px solid #d1c4e9;
+  border-radius: 6px;
+  cursor: pointer;
+  background: none;
+  -webkit-appearance: none;
+}
+
+.modalColorInput::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 6px;
+}
+
+.modalColorInput::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+
+.allDayLabel {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.saveBtn,
+.cancelBtn,
+.addEventBtn,
+.completeBtn {
+  padding: 0.5rem 1.3rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 30px;
+  border: 2px solid #8e24aa;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.saveBtn,
+.addEventBtn,
+.completeBtn {
+  background: #8e24aa;
+  color: #fff;
+}
+
+.saveBtn:hover,
+.addEventBtn:hover,
+.completeBtn:hover {
+  background: #6a1b9a;
+  border-color: #6a1b9a;
+}
+
+.cancelBtn {
+  background: #fff;
+  color: #8e24aa;
+}
+
+.cancelBtn:hover {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.eventsScrollArea {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.noEvents {
+  text-align: center;
+  color: #666;
+}
+
+.eventList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eventItem {
+  background: #f3e5f5;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.94rem;
+}
+
+.eventHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eventColorDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.eventTime {
+  font-size: 0.85rem;
+  color: #5e35b1;
+}
+
+.eventMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.completedLabel {
+  color: #388e3c;
+  font-weight: 600;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid #e1bee7;
+  margin: 0.75rem 0;
+}
+
+.addEventWrapper {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.subTitle {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #2c1a36;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .dayCell,
+  .emptyCell {
+    min-height: 60px;
+  }
+
+  .modal,
+  .dayPopupWindow {
+    width: 90%;
+  }
+}

@@ -1,0 +1,60 @@
+package routes
+
+import (
+	"diplom/controllers"
+	"diplom/middleware"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/websocket/v2"
+)
+
+func Setup(app *fiber.App) {
+	api := app.Group("/api")
+	api.Get("/chat/ws", websocket.New(controllers.ChatWebSocket))
+	chat := api.Group("/chat", middleware.JWTProtected())
+	chat.Get("/history", controllers.ChatHistory)
+	auth := api.Group("/auth")
+	auth.Post("/register", controllers.Register)
+	auth.Post("/login", controllers.Login)
+	auth.Get("/activate/:link", controllers.Activate)
+	auth.Post("/refresh", controllers.Refresh)
+	auth.Post("/logout", controllers.Logout)
+	family := api.Group("/family", middleware.JWTProtected())
+	family.Post("/create", controllers.CreateFamily)
+	family.Post("/invite", controllers.InviteMember)
+	api.Get("/family/accept/:token", controllers.AcceptInvitation)
+	family.Get("/details", controllers.GetFamilyDetails)
+	calendar := api.Group("/calendar", middleware.JWTProtected())
+	calendar.Post("/events", controllers.CreateEvent)
+	calendar.Get("/events", controllers.GetEventsForMonth)
+	calendar.Get("/events/all", controllers.GetAllEvents)
+	calendar.Post("/events/:id/complete", controllers.CompleteEvent)
+	calendar.Put("/events/:id", controllers.UpdateEvent)
+	calendar.Get("/today", controllers.GetEventsForToday)
+	calendar.Get("/next", controllers.GetNextEvent)
+	calendar.Get("/list", controllers.GetCalendarsList)
+	calendar.Post("/create_extra", controllers.CreateExtraCalendar)
+	calendar.Get("/:calendar_id/events", controllers.GetEventsForCalendar)
+	sub := api.Group("/subscription")
+	sub.Post("/webhook", controllers.YooKassaWebhook)
+	subAuth := sub.Group("", middleware.JWTProtected())
+	subAuth.Post("/buy", controllers.BuySubscription)
+	subAuth.Get("/check", controllers.CheckSubscription)
+	admin := api.Group("/admin", middleware.JWTProtected())
+	admin.Get("/payments", controllers.GetPaymentHistory)
+	admin.Get("/operators", controllers.ListOperators)
+	admin.Get("/users/search", controllers.SearchUsersByEmail)
+	admin.Post("/users/:id/make_operator", controllers.MakeOperator)
+	support := api.Group("/support", middleware.JWTProtected())
+	support.Post("/tickets", controllers.CreateTicket)
+	support.Get("/tickets/my", controllers.GetMyTickets)
+	support.Get("/tickets/:id", controllers.GetTicketInfo)
+	support.Post("/tickets/:id/close", controllers.CloseTicket)
+	support.Get("/tickets/:id/messages", controllers.GetTicketMessages)
+	support.Post("/tickets/:id/messages", controllers.CreateTicketMessage)
+	support.Delete("/tickets/:id/messages/:msgId", controllers.DeleteTicketMessageHTTP)
+	support.Get("/tickets/operator/list", controllers.ListOperatorTickets)
+	support.Post("/tickets/:id/assign", controllers.AssignTicket)
+	api.Get("/support/new/ws", websocket.New(controllers.SupportNewTicketsWS))
+	api.Get("/support/ws/:id", websocket.New(controllers.SupportTicketChatWS))
+}
